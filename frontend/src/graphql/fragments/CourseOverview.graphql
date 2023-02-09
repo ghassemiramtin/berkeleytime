@@ -1,0 +1,14 @@
+fragment CourseOverview on CourseType {
+  id
+  abbreviation
+  courseNumber
+  description
+  title
+  gradeAverage
+  letterAverage
+  openSeats
+  enrolledPercentage
+  enrolled
+  enrolledMax
+  units
+}
