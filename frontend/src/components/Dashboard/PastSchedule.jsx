@@ -1,5 +1,4 @@
 /* eslint-disable */
-import React from 'react';
 
 function PastSchedule({ past }) {
   return (

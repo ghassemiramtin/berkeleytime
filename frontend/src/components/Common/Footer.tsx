@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { H6, A } from 'bt/custom';
 
 const Footer: FC = () => (
-  <footer className="py-5">
+  <footer className="footer py-5">
     <Container>
       <Row noGutters>
         <Col xs={4} lg={{ span: 2, offset: 3 }}>

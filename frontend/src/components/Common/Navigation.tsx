@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavProps } from 'react-bootstrap';
@@ -48,10 +48,6 @@ const Navigation: FC<Props> = (props) => {
       fixed="top"
       expand="lg"
       bg="white"
-      style={props.banner ? { position: 'absolute' } : {}}
-      /* when the banner is open, the navbar will be positioned
-       at the top of the app-container instead of fixed to the
-       top of the viewport */
     >
       <Navbar.Brand as={Link} to="/" className="bt-bold">
         Berkeleytime

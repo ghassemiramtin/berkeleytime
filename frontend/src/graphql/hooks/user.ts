@@ -14,9 +14,9 @@ import {
   useLogoutMutation,
   UserProfileFragment,
   useUpdateUserMutation,
-} from '../graphql';
+} from 'graphql';
 
-export type UserInfo = {
+type UserInfo = {
   /**
    * This may change once the user query is loaded. This will
    * be false while the user's login state is undetermined.

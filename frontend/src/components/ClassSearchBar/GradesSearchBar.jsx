@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import Select from 'react-select-virtualized';
+import { Component } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import hash from 'object-hash';
 
@@ -7,6 +6,7 @@ import { connect } from 'react-redux';
 
 import { fetchGradeSelected } from '../../redux/actions';
 import { reactSelectCourseSearch } from 'utils/courses/search';
+import BTSelect from 'components/Custom/Select';
 
 const sortOptions = [
   { value: 'instructor', label: 'By Instructor' },
@@ -22,7 +22,6 @@ class GradesSearchBar extends Component {
       selectPrimary: props.selectPrimary,
       selectSecondary: props.selectSecondary,
     };
-    console.log(this.state)
     this.queryCache = {};
 
     this.handleClassSelect = this.handleClassSelect.bind(this);
@@ -61,7 +60,6 @@ class GradesSearchBar extends Component {
   }
 
   handleClassSelect(updatedClass) {
-    console.log(updatedClass)
     const { fetchGradeSelected } = this.props;
     if (updatedClass === null) {
       this.reset();
@@ -377,7 +375,7 @@ class GradesSearchBar extends Component {
       <Container fluid className="grades-search-bar">
         <Row style={{ marginBottom: 10 }}>
           <Col lg={3}>
-            <Select
+            <BTSelect
               name="selectClass"
               placeholder="Choose a class..."
               options={this.buildCoursesOptions(classes)}
@@ -390,7 +388,7 @@ class GradesSearchBar extends Component {
             />
           </Col>
           <Col lg={2}>
-            <Select
+            <BTSelect
               name="sortBy"
               value={
                 selectType === 'instructor' ? sortOptions[0] : sortOptions[1]
@@ -407,7 +405,7 @@ class GradesSearchBar extends Component {
             />
           </Col>
           <Col xs={6} sm={6} lg={3}>
-            <Select
+            <BTSelect
               name="instrSems"
               placeholder={!isMobile ? 'Select an option...' : 'Select...'}
               value={onePrimaryOption ? primaryOptions[0] : primaryOption}
@@ -423,7 +421,7 @@ class GradesSearchBar extends Component {
             />
           </Col>
           <Col xs={6} sm={6} lg={3}>
-            <Select
+            <BTSelect
               name="section"
               placeholder={!isMobile ? 'Select an option...' : 'Select...'}
               value={oneSecondaryOption ? secondaryOptions[0] : secondaryOption}

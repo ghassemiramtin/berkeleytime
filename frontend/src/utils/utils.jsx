@@ -2,23 +2,6 @@
  * A bunch of utility functions
  */
 
-import React from 'react';
-
-/**
- * Gets indicator class for a color.
- */
-export function getIndicatorPercent(percentage) {
-  if (percentage >= 0.99999) {
-    return '#FC7676'; // red
-  } else if (percentage > 0.65) {
-    return '#FFA414'; // orange
-  } else if (percentage > 0.3) {
-    return '#D3BC3B'; // yellow
-  } else {
-    return '#18DE83'; // green
-  }
-}
-
 /**
  * Returns a paragraph tag styled with color with respect to percentage
  * @param {string} text text in the paragraph tag
@@ -160,6 +143,5 @@ export {
   percentileToString,
   getGradeColor,
   getEnrollmentDay,
-  formatPercentage,
   applyIndicatorEnrollment,
 };

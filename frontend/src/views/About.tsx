@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Row, Col } from 'react-bootstrap';
 
 import { H3, P } from 'bt/custom'
 
-import CurrentContributors from '../components/About/CurrentContributors';
-import PastContributors from '../components/About/PastContributors';
+import CurrentContributors from 'components/About/CurrentContributors';
+import PastContributors from 'components/About/PastContributors';
 
 import doe from 'assets/img/about/group/doe.jpg'
 import michaels from 'assets/img/about/group/michaels.jpg'

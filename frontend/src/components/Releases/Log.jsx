@@ -1,5 +1,3 @@
-import React from 'react';
-
 function Log({ date, whatsNew, fixes }) {
   return (
     <div className="releases-log">

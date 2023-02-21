@@ -1,4 +1,3 @@
-import React from 'react';
 import { useHistory } from 'react-router';
 import { useLocation } from 'react-router-dom';
 import { useLogin } from '../../graphql/hooks/user';
