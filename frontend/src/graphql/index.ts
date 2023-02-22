@@ -1052,11 +1052,6 @@ export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetUserQuery = { user: { id: string, major: string, emailClassUpdate: boolean, emailGradeUpdate: boolean, emailEnrollmentOpening: boolean, emailBerkeleytimeUpdate: boolean, user: { id: string, username: string, firstName: string, lastName: string, email: string }, savedClasses: Array<{ id: string, abbreviation: string, courseNumber: string, description: string, title: string, gradeAverage: number, letterAverage: string, openSeats: number, enrolledPercentage: number, enrolled: number, enrolledMax: number, units: string }>, schedules: { edges: Array<{ node: { id: string, year: string, semester: string, name: string, totalUnits: string, dateCreated: unknown, dateModified: unknown, selectedSections: { edges: Array<{ node: { course: { abbreviation: string, courseNumber: string, units: string } } }> } } }> } } };
 
-export type StubQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type StubQuery = { __typename: 'Query' };
-
 export const SectionFragmentDoc = gql`
     fragment Section on SectionType {
   id
@@ -1929,35 +1924,3 @@ export function useGetUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Ge
 export type GetUserQueryHookResult = ReturnType<typeof useGetUserQuery>;
 export type GetUserLazyQueryHookResult = ReturnType<typeof useGetUserLazyQuery>;
 export type GetUserQueryResult = Apollo.QueryResult<GetUserQuery, GetUserQueryVariables>;
-export const StubDocument = gql`
-    query Stub {
-  __typename
-}
-    `;
-
-/**
- * __useStubQuery__
- *
- * To run a query within a React component, call `useStubQuery` and pass it any options that fit your needs.
- * When your component renders, `useStubQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useStubQuery({
- *   variables: {
- *   },
- * });
- */
-export function useStubQuery(baseOptions?: Apollo.QueryHookOptions<StubQuery, StubQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<StubQuery, StubQueryVariables>(StubDocument, options);
-      }
-export function useStubLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<StubQuery, StubQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<StubQuery, StubQueryVariables>(StubDocument, options);
-        }
-export type StubQueryHookResult = ReturnType<typeof useStubQuery>;
-export type StubLazyQueryHookResult = ReturnType<typeof useStubLazyQuery>;
-export type StubQueryResult = Apollo.QueryResult<StubQuery, StubQueryVariables>;
