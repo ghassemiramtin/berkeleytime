@@ -50,45 +50,55 @@ function colorEnrollment(percentage: number) {
 }
 
 type Props = {
-	sections: SectionFragment[];
+	sections: SectionFragment[] | null;
+	loading: boolean;
 };
 
-const CatalogViewSections = ({ sections }: Props) => {
+const CatalogViewSections = ({ sections, loading }: Props) => {
+	if (!sections) {
+		return (
+			<Skeleton
+				className={styles.sectionItem}
+				count={3}
+				height={65}
+				style={{ marginBottom: '10px' }}
+			/>
+		);
+	}
+
 	return (
 		<div className={styles.sectionRoot}>
 			{sections.length > 0 ? (
-				sections.map((section) => {
-					return (
-						<div
-							className={styles.sectionItem}
-							style={findInstructor(section.instructor)}
-							key={section.ccn}
-						>
-							<div className={styles.sectionInfo}>
-								<h5>
-									<span>{section.kind}</span> -{' '}
-									{section.locationName ? section.locationName : 'Unknown Location'}
-								</h5>
-								<h6>
-									<span>
-										{section.instructor ? section.instructor.toLowerCase() : 'instructor'}
-									</span>
-									, {section.wordDays} {formatSectionTime(section)}
-								</h6>
-							</div>
-							<div
-								className={`${colorEnrollment(section.enrolled / section.enrolledMax)} ${
-									styles.enrolled
-								}`}
-							>
-								<img src={people} />
-								{section.enrolled}/{section.enrolledMax}
-							</div>
+				sections.map((section) => (
+					<div
+						className={styles.sectionItem}
+						style={findInstructor(section.instructor)}
+						key={section.ccn}
+					>
+						<div className={styles.sectionInfo}>
+							<h5>
+								<span>{section.kind}</span> -{' '}
+								{section.locationName ? section.locationName : 'Unknown Location'}
+							</h5>
+							<h6>
+								<span>
+									{section?.instructor?.toLowerCase() ?? 'instructor'}
+								</span>
+								, {section.wordDays} {formatSectionTime(section)}
+							</h6>
 						</div>
-					);
-				})
+						<div
+							className={`${colorEnrollment(section.enrolled / section.enrolledMax)} ${
+								styles.enrolled
+							}`}
+						>
+							<img src={people} />
+							{section.enrolled}/{section.enrolledMax}
+						</div>
+					</div>
+				))
 			) : (
-				<Skeleton style={{ marginBottom: '10px' }} height={65} count={5} borderRadius={12} />
+				<div>There are no class sections for this course.</div>
 			)}
 		</div>
 	);

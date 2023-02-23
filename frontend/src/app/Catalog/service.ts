@@ -1,4 +1,4 @@
-import { FilterFragment, GetFiltersQuery } from 'graphql';
+import { FilterFragment, GetFiltersQuery, PlaylistType } from 'graphql';
 import {
 	CatalogCategoryKeys,
 	FilterTemplate,
@@ -15,7 +15,7 @@ const SEMESTER_VALUES = {
 };
 
 const SORT_OPTIONS: SortOption[] = [
-	// { value: 'relevance', label: 'Sort By: Relevance' },
+	{ value: 'relevance', label: 'Sort By: Relevance' },
 	{ value: 'average_grade', label: 'Sort By: Average Grade' },
 	{ value: 'department_name', label: 'Sort By: Department Name' },
 	{ value: 'open_seats', label: 'Sort By: Open Seats' },
@@ -109,7 +109,7 @@ const processFilterData = (data?: GetFiltersQuery) => {
 	return filters;
 };
 /**
- * 
+ *
  * @param filterItems an empty filter template
  * @param filters processed filter data
  * @description Populates the `options` field of each template item with the
@@ -180,6 +180,17 @@ const SemesterToValue = (semesterFilter: FilterFragment) => {
 	return parseInt(year, 10) + SEMESTER_VALUES[semester];
 };
 
+/**
+ * @description sorts the playlists alphabetically, and
+ * by putting the `units` category at the end of the list
+ */
+const sortPills = (playlists: PlaylistType[]) => {
+	const units = sortByName(playlists.filter((p) => p.category === 'units'));
+	const rest = sortByName(playlists.filter((p) => p.category !== 'units'));
+
+	return rest.concat(units);
+};
+
 export const sortByName = <T extends { name: string }[]>(arr: T) => {
 	return arr.sort((a, b) => a.name.localeCompare(b.name));
 };
@@ -191,5 +202,6 @@ export default {
 	processFilterData,
 	putFilterOptions,
 	sortByName,
-	sortSemestersByLatest
+	sortSemestersByLatest,
+	sortPills
 };
